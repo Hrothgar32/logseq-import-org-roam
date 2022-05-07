@@ -6,7 +6,7 @@ This is a little Python script which let's you import your [[https://www.orgroam
 
 * Prerequisites
 
-You should update your *Logseq config file,* (which  is located in: /Logseq graph root folder/\/logseq\/config.edn) to match the following settings:
+You should update your *Logseq config file* (which  is located in: /Logseq graph root folder/logseq/config.edn) to match the following settings:
 
 #+begin_src clojure
  {
@@ -57,5 +57,5 @@ You need the value of the /org-roam-dailies-directory/ variable, but the dailies
 #+begin_src sh
 chmod +x script.py
 
-script.py ORG_ROAM_DB_PATH ORG_ROAM_NOTES_PATH LOGSEQ_DIR_PATH (ORG_ROAM_DAILIES_PATH)
+./script.py ORG_ROAM_DB_PATH ORG_ROAM_NOTES_PATH LOGSEQ_DIR_PATH (ORG_ROAM_DAILIES_PATH)
 #+end_src
