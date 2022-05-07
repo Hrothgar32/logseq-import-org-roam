@@ -1,0 +1,61 @@
+#+title: Logseq Org-Roam importer
+
+* What is this?
+
+This is a little Python script which let's you import your [[https://www.orgroam.com/][org-roam]] notes and daily journals into [[https://logseq.com/][Logseq]].
+
+* Prerequisites
+
+You should update your *Logseq config file,* (which  is located in: /Logseq graph root folder/\/logseq\/config.edn) to match the following settings:
+
+#+begin_src clojure
+ {
+  :preferred-format Org
+  :preferred-workflow :todo
+  :org-mode/insert-file-link? true
+  :date-formatter "yyyy-MM-dd"
+  }
+#+end_src
+
+This ensures that Logseq treats your files and backlinks properly.
+You should also have SQLite as an Org-Roam database, but most probably you have, since that is the default.
+
+I've written this script with Linux in mind, because it relies on *sed*.
+
+* How to run it
+
+The scripts needs 3 arguments and has 1 optional argument:
+
+** ORG_ROAM_DB_PATH
+ The path to the SQLite file which is Org-roams database.
+ You can easily get it's value if you search for the  /org-roam-db-location/ variable in Emacs:
+
+ #+begin_src emacs-lisp
+(print org-roam-db-location)
+#+end_src
+
+#+RESULTS:
+: /example/path/org-roam.db
+
+** ORG_ROAM_NOTES_PATH
+The path to the directory where org-roam captures its notes by default.
+You can get it's value with the /org-roam-directory/ Emacs variable.
+
+ #+begin_src emacs-lisp
+(print org-roam-directory)
+#+end_src
+
+** LOGSEQ_DIR_PATH
+
+The directory which you chose as local directory when you first entered Logseq.
+** ORG_ROAM_DAILIES_PATH (optional)
+If you want to also import your /daily/ org-roam files as Logseq journal files, you need to also give this argument to the script.
+
+You need the value of the /org-roam-dailies-directory/ variable, but the dailies folder is usually the folder located in the /org-roam-directory/ with the name *daily*
+** Run the command
+
+#+begin_src sh
+chmod +x script.py
+
+script.py ORG_ROAM_DB_PATH ORG_ROAM_NOTES_PATH LOGSEQ_DIR_PATH (ORG_ROAM_DAILIES_PATH)
+#+end_src
